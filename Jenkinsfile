@@ -21,7 +21,7 @@ pipeline {
             steps {
                 echo 'pushing the application...'
                 withCredentials([
-                    usernamePassword(credentials: 'DOCKERHUB_CREDENTIALS', usernameVariable: USER, passwordVariable: PASS)
+                    usernamePassword(credentialsId: 'DOCKERHUB_CREDENTIALS', usernameVariable: USER, passwordVariable: PASS)
                 ]){
                     sh "${USER} - ${PASS}"
                 }
