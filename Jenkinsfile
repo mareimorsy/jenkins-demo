@@ -19,11 +19,11 @@ pipeline {
 
         stage("push") {
             steps {
-                echo 'building the application...'
+                echo 'pushing the application...'
                 withCredentials([
                     usernamePassword(credentials: 'DOCKERHUB_CREDENTIALS', usernameVariable: USER, passwordVariable: PASS)
                 ]){
-                    sh "$USER - $PASS"
+                    sh "${USER} - ${PASS}"
                 }
                 // sh 'npm install'
                 // sh 'npm build'
