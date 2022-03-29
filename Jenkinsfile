@@ -1,8 +1,8 @@
 pipeline {
-    // agent any
-    agent {
-        docker { image 'node:16.13.1-alpine' }
-    }
+    agent any
+    // agent {
+    //     docker { image 'node:16.13.1-alpine' }
+    // }
 
     stages {
         
@@ -31,37 +31,37 @@ pipeline {
             }
         }
         
-        stage("test") {
+        // stage("test") {
 
-            steps {
-                // echo 'pushing the application...'
-                // echo 'pushing the application...'
-
-
-                // docker.image('mongo:5.0').withRun('-e "MONGO_INITDB_ROOT_USERNAME=admin" -e="MONGO_INITDB_ROOT_PASSWORD=admin"') { c ->
-                //     // docker.image('mysql:5').inside("--link ${c.id}:db") {
-                //     //     /* Wait until mysql service is up */
-                //     //     sh 'while ! mysqladmin ping -hdb --silent; do sleep 1; done'
-                //     // }
-                //     docker.image('mareimorsy/realworld-app').withRun('-e "NODE_ENV=production" -e SECRET="prod-secret" -e MONGODB_URI="mongodb://admin:admin@mongodb:27017/conduit?authSource=admin"').inside("--link ${c.id}:db") {
-                //         /*
-                //         * Run some tests which require MySQL, and assume that it is
-                //         * available on the host name `db`
-                //         */
-                //         sh 'npm run test'
-                //     }
-                // }
-
-                // sh 'apk add curl docker docker-compose'
-                // sh 'curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose'
-                // sh 'chmod +x /usr/bin/docker-compose'
-                // sh 'docker-compose up --build'
+        //     steps {
+        //         // echo 'pushing the application...'
+        //         // echo 'pushing the application...'
 
 
+        //         // docker.image('mongo:5.0').withRun('-e "MONGO_INITDB_ROOT_USERNAME=admin" -e="MONGO_INITDB_ROOT_PASSWORD=admin"') { c ->
+        //         //     // docker.image('mysql:5').inside("--link ${c.id}:db") {
+        //         //     //     /* Wait until mysql service is up */
+        //         //     //     sh 'while ! mysqladmin ping -hdb --silent; do sleep 1; done'
+        //         //     // }
+        //         //     docker.image('mareimorsy/realworld-app').withRun('-e "NODE_ENV=production" -e SECRET="prod-secret" -e MONGODB_URI="mongodb://admin:admin@mongodb:27017/conduit?authSource=admin"').inside("--link ${c.id}:db") {
+        //         //         /*
+        //         //         * Run some tests which require MySQL, and assume that it is
+        //         //         * available on the host name `db`
+        //         //         */
+        //         //         sh 'npm run test'
+        //         //     }
+        //         // }
+
+        //         // sh 'apk add curl docker docker-compose'
+        //         // sh 'curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose'
+        //         // sh 'chmod +x /usr/bin/docker-compose'
+        //         // sh 'docker-compose up --build'
 
 
-            }
-        }
+
+
+        //     }
+        // }
 
         // stage("push") {
         //     agent {
