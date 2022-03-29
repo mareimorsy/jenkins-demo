@@ -28,7 +28,7 @@ pipeline {
             steps {
                 echo 'Testing the application...'
 
-                // sh 'sleep 65'
+                sh 'sleep 65'
 
                 // sh '''
                 //     docker-compose up -d
