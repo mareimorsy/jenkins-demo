@@ -28,7 +28,7 @@ pipeline {
             steps {
                 echo 'Testing the application...'
 
-                sh 'sleep 65'
+                // sh 'sleep 65'
 
                 // sh '''
                 //     docker-compose up -d
@@ -57,7 +57,7 @@ pipeline {
                 withCredentials([
                     usernamePassword(credentialsId: 'DOCKERHUB_CREDENTIALS', usernameVariable: 'USER', passwordVariable: 'PASS')
                 ]){
-                    sh "docker login -u ${USER} --password-stdin ${PASS}"
+                    sh "docker login --username ${USER} --password ${PASS}"
                     sh "docker push mareimorsy/realworld-app:${env.BUILD_ID}"
                 }
             }
