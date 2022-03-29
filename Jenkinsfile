@@ -15,7 +15,10 @@ pipeline {
                 // sh 'npm install'
                 // sh 'npm build'
 
-                sh 'docker build -t mareimorsy/realworld-app .'
+                sh 'ls'
+                sh 'pwd'
+
+                // sh 'docker build -t mareimorsy/realworld-app .'
 
                 // docker.withRegistry('https://registry.hub.docker.com', 'DOCKERHUB_CREDENTIALS') {
 
