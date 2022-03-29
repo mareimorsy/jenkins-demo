@@ -19,6 +19,7 @@ pipeline {
                 sh 'pwd'
 
                 sh 'docker build -t mareimorsy/realworld-app .'
+                echo 'done'
 
                 // docker.withRegistry('https://registry.hub.docker.com', 'DOCKERHUB_CREDENTIALS') {
 
