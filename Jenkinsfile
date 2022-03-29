@@ -48,7 +48,7 @@ pipeline {
                     docker-compose up -d
                     IS_MONGO_UP=false
                     while "$IS_MONGO_UP" == false ;do
-                        MONGO_STATUS=`lsof -i:27017`
+                        MONGO_STATUS=$(lsof -i:27017)
                         if ! -z "$MONGO_STATUS" ;then
                             IS_MONGO_UP=true
                         fi
@@ -57,7 +57,7 @@ pipeline {
 
                     sleep 5
 
-                    npm run test
+                    docker exec -it realworld-app -- sh -c "npm run tests"
                     '''               
 
 
