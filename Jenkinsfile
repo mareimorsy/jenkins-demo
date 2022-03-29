@@ -18,7 +18,7 @@ pipeline {
                 sh 'ls'
                 sh 'pwd'
 
-                sh 'docker build -t mareimorsy/realworld-app .'
+                sh "docker build -t mareimorsy/realworld-app:${env.BUILD_ID} ."
                 echo 'done'
 
                 // docker.withRegistry('https://registry.hub.docker.com', 'DOCKERHUB_CREDENTIALS') {
