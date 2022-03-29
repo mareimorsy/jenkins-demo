@@ -1,4 +1,6 @@
-FROM jenkins/jenkins:lts-jdk11
-USER root
-RUN curl -sSL https://get.docker.com/ | sh
-# USER jenkins
+FROM node:17-alpine3.14
+WORKDIR /app
+ADD app/ /app/
+RUN npm install
+EXPOSE 3000
+CMD ["node", "/app/app.js"]

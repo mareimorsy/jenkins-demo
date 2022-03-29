@@ -1,0 +1,44 @@
+version: '3.9'
+services:
+  realworld_app:
+    container_name: realworld-app
+    restart: always
+    build: .
+    # This feature is only available in v3.9 -> 19.03.0
+    depends_on:
+      - mongodb
+    # volumes:
+    #     - ./app:/app
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=production
+      - SECRET=prod-secret
+      - MONGODB_URI=mongodb://admin:admin@mongodb:27017/conduit?authSource=admin
+    # override docker command
+    command: "npm start"
+
+
+  mongodb:
+    image: mongo:5.0
+    # image: mongo:4.4
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo_data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+
+  # GUI client for mongoDB
+  mongo-express:
+    image: mongo-express
+    depends_on:
+      - mongodb
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: admin
+      ME_CONFIG_MONGODB_URL: mongodb://admin:admin@mongodb:27017/
