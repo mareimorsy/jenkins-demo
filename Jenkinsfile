@@ -47,7 +47,7 @@ pipeline {
                 sh '''
                     docker-compose up -d
 
-                    // Wait for mongodb to be up
+                    # Wait for mongodb to be up
                     IS_MONGO_UP=false
                     while "$IS_MONGO_UP" == false ;do
                         MONGO_STATUS=$(lsof -i:27017)
