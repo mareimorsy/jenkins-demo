@@ -47,9 +47,9 @@ pipeline {
                 sh '''
                     docker-compose up -d
                     IS_MONGO_UP=false
-                    while [ "$IS_MONGO_UP" == false ];do
+                    while "$IS_MONGO_UP" == false ;do
                         MONGO_STATUS=`lsof -i:27017`
-                        if [ ! -z "$MONGO_STATUS" ];then
+                        if ! -z "$MONGO_STATUS" ;then
                             IS_MONGO_UP=true
                         fi
                         echo $MONGO_STATUS
