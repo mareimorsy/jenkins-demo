@@ -57,7 +57,7 @@ pipeline {
 
                     sleep 5
 
-                    docker exec -it realworld-app "npm run tests"
+                    docker exec -it realworld-app "sh -c 'npm run tests'"
                     '''               
 
 
