@@ -28,43 +28,38 @@ pipeline {
             steps {
                 echo 'Testing the application...'
 
+                sh 'sleep 65'
 
-                // docker.image('mongo:5.0').withRun('-e "MONGO_INITDB_ROOT_USERNAME=admin" -e="MONGO_INITDB_ROOT_PASSWORD=admin"') { c ->
-                //     // docker.image('mysql:5').inside("--link ${c.id}:db") {
-                //     //     /* Wait until mysql service is up */
-                //     //     sh 'while ! mysqladmin ping -hdb --silent; do sleep 1; done'
-                //     // }
-                //     docker.image('mareimorsy/realworld-app').withRun('-e "NODE_ENV=production" -e SECRET="prod-secret" -e MONGODB_URI="mongodb://admin:admin@mongodb:27017/conduit?authSource=admin"').inside("--link ${c.id}:db") {
-                //         /*
-                //         * Run some tests which require MySQL, and assume that it is
-                //         * available on the host name `db`
-                //         */
-                //         sh 'npm run test'
-                //     }
-                // }
+                // sh '''
+                //     docker-compose up -d
 
+                //     # Wait for mongodb to be up
+                //     IS_MONGO_UP=false
+                //     while "$IS_MONGO_UP" == false ;do
+                //         MONGO_STATUS=$(lsof -i:27017)
+                //         if ! -z "$MONGO_STATUS" ;then
+                //             IS_MONGO_UP=true
+                //         fi
+                //         echo $MONGO_STATUS
+                //     done
 
-                sh '''
-                    docker-compose up -d
+                //     sleep 5
 
-                    # Wait for mongodb to be up
-                    IS_MONGO_UP=false
-                    while "$IS_MONGO_UP" == false ;do
-                        MONGO_STATUS=$(lsof -i:27017)
-                        if ! -z "$MONGO_STATUS" ;then
-                            IS_MONGO_UP=true
-                        fi
-                        echo $MONGO_STATUS
-                    done
+                //     docker exec -t realworld-app sh -c 'npm run test'
+                //     '''
+            }
+        }
 
-                    sleep 5
+        stage("Push") {
 
-                    docker exec -t realworld-app sh -c 'npm run test'
-                    '''               
-
-
-
-
+            steps {
+                echo 'Push the docker image to dockerhub...'
+                withCredentials([
+                    usernamePassword(credentialsId: 'DOCKERHUB_CREDENTIALS', usernameVariable: 'USER', passwordVariable: 'PASS')
+                ]){
+                    sh "docker login -u ${USER} --password-stdin ${PASS}"
+                    sh "docker push mareimorsy/realworld-app:${env.BUILD_ID}"
+                }
             }
         }
 
