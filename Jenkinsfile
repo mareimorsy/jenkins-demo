@@ -51,9 +51,9 @@ pipeline {
                 //     }
                 // }
 
-                sh 'apk add curl'
-                sh 'curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose'
-                sh 'chmod +x /usr/bin/docker-compose'
+                sh 'apk add curl docker-compose'
+                // sh 'curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose'
+                // sh 'chmod +x /usr/bin/docker-compose'
                 sh 'docker-compose up --build'
 
 
