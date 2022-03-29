@@ -46,6 +46,8 @@ pipeline {
 
                 sh '''
                     docker-compose up -d
+
+                    // Wait for mongodb to be up
                     IS_MONGO_UP=false
                     while "$IS_MONGO_UP" == false ;do
                         MONGO_STATUS=$(lsof -i:27017)
@@ -57,7 +59,7 @@ pipeline {
 
                     sleep 5
 
-                    docker exec -it realworld-app "sh -c 'npm run tests'"
+                    docker exec -t realworld-app sh -c 'npm run test'
                     '''               
 
 
