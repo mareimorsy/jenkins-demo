@@ -3,6 +3,11 @@
 ## Deliverables
 
 * [Dockerfile](Dockerfile) & [docker-compose](docker-compose.yaml)
+```
+docker-compose up --build
+```
+Here's a screenshot for the tests running locally using docker-compose
+![Pipeline tests](images/tests.png)
 * [Jenkins File](Jenkinsfile)
 
 I ran jenkins in docker inside my local machine as following
