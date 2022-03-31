@@ -34,6 +34,7 @@ Here's a screenshot when all pipelines succeed
 kubectl create -f k8s/
 ```
 * install [nginx ingress controller](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/)
+* Place your domain name in the [k8s ingress file](k8s/ingress.yaml) before you apply it.
 
 if you're running minikube you should enable the ingress addon like this
 ```
